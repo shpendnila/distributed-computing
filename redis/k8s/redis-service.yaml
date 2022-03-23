@@ -5,6 +5,7 @@ metadata:
   namespace: redis
 spec:
   type: ClusterIP
+  clusterIP: 10.96.185.105
   ports:
     - port: 6379
       targetPort: 6379

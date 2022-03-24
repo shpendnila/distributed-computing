@@ -8,6 +8,7 @@ import redis
 logger = get_logger(log_level=configuration.LOG_LEVEL)
 redis_host = configuration.HOST
 redis_port = configuration.PORT
+channels = configuration.CHANNELS
 
 
 def get_redis_client():
@@ -19,7 +20,7 @@ def get_redis_client():
 
 
 def listen_to_channels(subscriber):
-    logger.info("Listening for messages")
+    logger.info(f"listening for messages from {', '.join(channels)}")
     while True:
         message = subscriber.get_message()
         if message and message['type'] == "message":

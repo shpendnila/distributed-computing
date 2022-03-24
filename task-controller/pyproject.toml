@@ -10,6 +10,7 @@ python = "^3.8"
 redis = "^4.2.0"
 kubernetes = "^23.3.0"
 shortuuid = "^1.0.8"
+PyYAML = "^6.0"
 
 [tool.poetry.dev-dependencies]
 

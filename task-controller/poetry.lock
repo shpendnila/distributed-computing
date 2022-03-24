@@ -292,7 +292,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "2ab93f10d14acf1032fe74a619e35015fe2c6654b7d7f943342b5b3286129f66"
+content-hash = "c3ea7851f3efb639155e2eacb7e8134884525ca99cef1a7b205e889c8407fb94"
 
 [metadata.files]
 async-timeout = [

@@ -20,21 +20,21 @@ spec:
           imagePullPolicy: Never
           env:
             - name: LOG_LEVEL
-              value: 10
+              value: "10"
             - name: HOST
               valueFrom:
                 configMapKeyRef:
-                  name: task-controller-configmap
-                  key: host
+                  name: task-controller-config
+                  key: redis_host
             - name: PORT
               valueFrom:
                 configMapKeyRef:
-                  name: task-controller-configmap
-                  key: port
+                  name: task-controller-config
+                  key: redis_port
             - name: CHANNELS
               valueFrom:
                 configMapKeyRef:
-                  name: task-controller-configmap
+                  name: task-controller-config
                   key: channels
           ports:
             - containerPort: 8080

@@ -4,7 +4,8 @@ from src.utils import get_redis_client, listen_to_channels
 
 def main():
     redis_client = get_redis_client()
-    sub = redis_client.pubsub().subscribe(
+    sub = redis_client.pubsub()
+    sub.subscribe(
         configuration.CHANNELS
     )
     listen_to_channels(sub)

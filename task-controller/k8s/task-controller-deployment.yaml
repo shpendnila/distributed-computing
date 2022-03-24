@@ -19,4 +19,4 @@ spec:
           image: task-controller
           imagePullPolicy: Never
           ports:
-            - containerPort: 6379
+            - containerPort: 8080

@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta25
+kind: Config
+metadata:
+  name: task-controller
+build:
+  artifacts:
+  - image: task-controller
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/task-controller-deployment.yaml
+    - k8s/task-controller-service.yaml

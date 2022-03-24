@@ -18,5 +18,21 @@ spec:
         - name: task-controller
           image: task-controller
           imagePullPolicy: Never
+          env:
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: task-controller-configmap
+                  key: host
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: task-controller-configmap
+                  key: port
+            - name: CHANNELS
+              valueFrom:
+                configMapKeyRef:
+                  name: task-controller-configmap
+                  key: channels
           ports:
             - containerPort: 8080

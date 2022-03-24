@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: task-controller-config
+data:
+  redis_host: "10.96.185.105"
+  redis_port: "6379"
+  channels: |
+    - "first-channel"
+    - "second-channel"

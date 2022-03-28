@@ -3,8 +3,10 @@ from src.config import configuration
 
 import time
 import sys
+import asyncio
+import async_timeout
 import json
-import redis
+import aioredis
 
 logger = get_logger(log_level=configuration.LOG_LEVEL)
 redis_host = configuration.HOST
@@ -29,13 +31,13 @@ def get_redis_client():
     :return: redis client
     """
     logger.debug(f"connecting to redis on {redis_host}:{redis_port}")
-    return redis.Redis(
+    return aioredis.Redis(
         host=redis_host,
         port=redis_port,
     )
 
 
-def listen_to_channels(subscriber):
+async def listen_to_channels(subscriber):
     """
     listen for messages from multiple channels
     :param subscriber:
@@ -43,10 +45,12 @@ def listen_to_channels(subscriber):
     """
     logger.info(f"listening for messages from: {', '.join(channels)}")
     while True:
-        message = subscriber.get_message(ignore_subscribe_messages=True)
-        if message:
-            channel = message['channel']
-            data = json.loads(message['data'])
-            logger.info(f"channel: {channel}")
-            logger.info(f"data: {data}")
-        time.sleep(0.1)
+        async with async_timeout.timeout(10):
+            message = await subscriber.get_message(
+                ignore_subscribe_messages=True
+            )
+            if message:
+                channel = message['channel']
+                data = json.loads(message['data'])
+                logger.info(f"channel: {channel}")
+                logger.info(f"data: {data}")

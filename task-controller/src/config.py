@@ -9,8 +9,12 @@ class Config(object):
     HOST = os.getenv("HOST", "localhost")
     PORT = os.getenv("PORT", 6379)
     CHANNELS = full_load(
-        os.getenv("CHANNELS", ["test-channel"])
-    )
+        os.getenv("CHANNELS",
+                  """
+    - test-channel
+    - first-channel
+"""
+                  ))
 
     LOG_LEVEL = int(os.getenv("LOG_LEVEL", 10))
 

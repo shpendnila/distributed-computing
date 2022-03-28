@@ -15,8 +15,8 @@ channels = configuration.CHANNELS
 def exit_handler(*args):
     """
     exit_handler receives a signal number and a frame where the signal was received from
-    :param args:
-    :return: signum,frame
+    :param args: signum,frame
+    :return:
     """
     signum = args[0]
     logger.info(f"exited gracefully with signal:{signum}")
@@ -24,6 +24,10 @@ def exit_handler(*args):
 
 
 def get_redis_client():
+    """
+    create redis client from host and port received as environment variables
+    :return: redis client
+    """
     logger.debug(f"connecting to redis on {redis_host}:{redis_port}")
     return redis.Redis(
         host=redis_host,
@@ -32,7 +36,12 @@ def get_redis_client():
 
 
 def listen_to_channels(subscriber):
-    logger.info(f"listening for messages from {', '.join(channels)}")
+    """
+    listen for messages from multiple channels
+    :param subscriber:
+    :return:
+    """
+    logger.info(f"listening for messages from: {', '.join(channels)}")
     while True:
         message = subscriber.get_message(ignore_subscribe_messages=True)
         if message:

@@ -12,7 +12,13 @@ redis_port = configuration.PORT
 channels = configuration.CHANNELS
 
 
-def exit_handler(signum, frame):
+def exit_handler(*args):
+    """
+    exit_handler receives a signal number and a frame where the signal was received from
+    :param args:
+    :return: signum,frame
+    """
+    signum = args[0]
     logger.info(f"exited gracefully with signal:{signum}")
     sys.exit()
 

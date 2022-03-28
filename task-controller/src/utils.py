@@ -1,7 +1,7 @@
 from src.logger import get_logger
 from src.config import configuration
+from src.job_controller.spawn_job import kube_create_job
 
-import time
 import sys
 import asyncio
 import async_timeout
@@ -37,9 +37,10 @@ def get_redis_client():
     )
 
 
-async def listen_to_channels(subscriber):
+async def listen_to_channels(subscriber, queue):
     """
     listen for messages from multiple channels
+    :param queue:
     :param subscriber:
     :return:
     """
@@ -54,3 +55,24 @@ async def listen_to_channels(subscriber):
                 data = json.loads(message['data'])
                 logger.info(f"channel: {channel}")
                 logger.info(f"data: {data}")
+                queue.put_nowait(data)
+
+
+async def job_worker(executor, queue):
+    while True:
+        job_configs = await queue.get()
+        logger.info(job_configs)
+        loop = asyncio.get_event_loop()
+        job_creation_tasks = [
+            loop.run_in_executor(
+                executor, kube_create_job,
+                job_conf['name'],
+                job_conf['image'],
+                job_conf['env_vars'],
+                job_conf['namespace']
+            ) for job_conf in job_configs
+        ]
+        completed, pending = await asyncio.wait(job_creation_tasks)
+        results = [t.result() for t in completed]
+        logger.info(f'job created: {", ".join(results)}')
+        queue.task_done()

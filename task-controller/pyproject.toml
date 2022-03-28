@@ -11,6 +11,7 @@ redis = "^4.2.0"
 kubernetes = "^23.3.0"
 shortuuid = "^1.0.8"
 PyYAML = "^6.0"
+aioredis = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 

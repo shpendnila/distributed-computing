@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta25
+kind: Config
+metadata:
+  name: task-service
+build:
+  artifacts:
+  - image: task-service
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/task-service-deployment.yaml

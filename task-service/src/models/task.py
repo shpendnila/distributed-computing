@@ -14,6 +14,7 @@ class Task(BaseModel):
     image: str = 'test'
     env_vars: Optional[dict]
     namespace: str = "default"
+    data: Optional[dict]
 
     class Config:
         json_loads = orjson.loads

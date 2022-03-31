@@ -9,6 +9,7 @@ python = "^3.8"
 orjson = "^3.6.7"
 fastapi = "^0.75.0"
 uvicorn = "^0.17.6"
+aioredis = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

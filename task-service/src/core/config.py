@@ -7,5 +7,6 @@ logging_config.dictConfig(LOGGING)
 
 PROJECT_NAME = os.getenv('PROJECT_NAME', 'task-service')
 
-REDIS_HOST = os.getenv('REDIS_HOST', '10.7.243.157')
+REDIS_HOST = os.getenv('REDIS_HOST', '10.96.185.105')
 REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))
+CHANNEL = os.getenv("CHANNEL", "task-channel")

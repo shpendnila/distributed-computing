@@ -1,13 +1,20 @@
 import orjson
-from pydantic import BaseModel
+from typing import Optional
+from uuid import UUID, uuid4
+from pydantic import BaseModel, Field
+
+
+def _orjson_dumps(val, *, default):
+    return orjson.dumps(val, default=default).decode()
 
 
 class Task(BaseModel):
-    name: str
-    image: str
-    env_vars: dict
-    namespace: str
+    uid: UUID = Field(default_factory=uuid4)
+    name: str = "task"
+    image: str = 'test'
+    env_vars: Optional[dict]
+    namespace: str = "default"
 
     class Config:
         json_loads = orjson.loads
-        json_dumps = orjson.dumps
+        json_dumps = _orjson_dumps

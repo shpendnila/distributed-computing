@@ -8,6 +8,7 @@ authors = ["shpendnila <shpendnila7@gmail.com>"]
 python = "^3.8"
 orjson = "^3.6.7"
 fastapi = "^0.75.0"
+uvicorn = "^0.17.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

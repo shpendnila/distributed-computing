@@ -1,0 +1,8 @@
+anyio==3.5.0; python_version >= "3.6" and python_full_version >= "3.6.2"
+fastapi==0.75.0; python_full_version >= "3.6.1"
+idna==3.3; python_version >= "3.6" and python_full_version >= "3.6.2"
+orjson==3.6.7; python_version >= "3.7"
+pydantic==1.9.0; python_full_version >= "3.6.1"
+sniffio==1.2.0; python_version >= "3.6" and python_full_version >= "3.6.2"
+starlette==0.17.1; python_version >= "3.6" and python_full_version >= "3.6.1"
+typing-extensions==4.1.1; python_version >= "3.6" and python_full_version >= "3.6.1"

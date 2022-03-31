@@ -6,6 +6,8 @@ authors = ["shpendnila <shpendnila7@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+orjson = "^3.6.7"
+fastapi = "^0.75.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

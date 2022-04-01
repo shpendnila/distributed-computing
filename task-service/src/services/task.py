@@ -21,7 +21,7 @@ class TaskService:
         await self._publish_to_channel(task)
 
     async def store_task_data_to_cache(self, task_data: str) -> Optional[str]:
-        if task_data == '{"data":null}':
+        if task_data in {'{"data":null}', '{"data":{}}'}:
             return
         return await self._put_task_data_to_cache(task_data)
 
